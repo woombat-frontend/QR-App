@@ -1,0 +1,38 @@
+.container-right-header{
+    width: 100%;
+    background-color: #3B3F4B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-master-header{
+    display: grid;
+    grid-template-columns: 15% 1fr;
+    height: 7vh;
+    width: 100%;
+    position: relative;
+}
+.container-left-header{
+    background-color: #E8CA4D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bar-icon-header{
+    font-size: 1.5rem;
+}
+.text-header-right{
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-size: 1rem;
+}
+.header-fixed{
+    position: fixed;
+    width: 100%;
+}
+
+
+.container-full{
+    position: absolute;
+}

@@ -1,0 +1,57 @@
+/* Media Querys */
+
+
+
+
+
+/* 360x640 Size */
+
+/* Login View */
+
+@media (max-width: 360px){
+    .container-buttom-login{
+        width: 75% !important;
+        padding: 0.6rem 0rem !important;
+    }
+    .text-subject-login{
+        font-size: 0.8rem;
+    }
+    .text-name-login{
+        font-size: 1.8rem !important;
+    }
+}
+
+/* Home view */
+
+@media (max-width: 360px){
+    .img-local{
+        width: 4rem !important;
+    }
+    .text-normal-detail-local:nth-child(3){
+        font-size: 0.875rem !important;
+    }
+    .container-master-home{
+        padding: 0 1.8rem !important;
+        padding-bottom: 2.5rem !important;
+    }
+    .container-categorie{
+        grid-gap: 0.5rem !important;
+    }
+}
+
+/* 375x667 Size */
+
+/* Login View */
+
+@media(max-width: 375px){
+    .container-buttom-login{
+        width: 75% !important;
+        padding: 0.6rem 0rem !important;
+    }
+    .text-subject-login{
+        font-size: 0.8rem;
+    }
+    .text-name-login{
+        font-size: 1.8rem !important;
+    }
+}
