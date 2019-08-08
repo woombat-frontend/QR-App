@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../Styles/Views/Home.css'
 import Header from '../Views/Components/Header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,9 +19,11 @@ const categories = [
 ]
 
 const Home = () =>{
+
+
     return(
         <React.Fragment>
-        <Header title={"Inicio"}/>
+        <Header title={"Inicio"} />
         <div className="container-master-home">
             <div className="container-points-home">
                 <p className="text-points-home">Puntos Acumulados</p>
