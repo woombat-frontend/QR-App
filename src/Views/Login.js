@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import { Redirect } from 'react-router';
 import '../Styles/Views/login.css'
 import '../Styles/MediaQuerys.css'
 import GasIcon from '../assets/gasicon.svg'
@@ -7,14 +6,15 @@ import { Input } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { faGooglePlusG } from '@fortawesome/free-brands-svg-icons'
+import { withRouter } from 'react-router-dom'
 
 
-const Login = () =>{
+const Login = props =>{
 
     const [login, setLogin] = useState(true)
 
     const CheckLogin = () =>{
-        
+        props.history.push('home')
     }
 
     return(
@@ -58,4 +58,4 @@ const Login = () =>{
     )
 }
 
-export default Login;
+export default withRouter(Login);

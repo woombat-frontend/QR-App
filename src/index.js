@@ -5,7 +5,20 @@ import App from './App';
 import 'antd/dist/antd.css';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import Context from './GlobalState/context'
+import useGlobalState from './GlobalState/useGlobalState'
+
+const Index = () => {
+    const store = useGlobalState();
+
+    return (
+        <Context.Provider value={store} >
+            <App />
+        </Context.Provider>
+    )
+}
+
+ReactDOM.render(<Index />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

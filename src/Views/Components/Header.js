@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import Context from '../../GlobalState/context'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons'
 import { faUser, faFolder, faMoneyBillAlt, faAddressCard, faMap, faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
 import '../../Styles/Header.css'
 import Ropa from '../../assets/demo-img/ropa.jpg'
+import Hammer from 'react-hammerjs'
+
 
 const OptionsMenu = [
+    {name: "Inicio", icon: faHome},
     {name: "Acumular", icon: faUser},
     {name: "Categorias", icon: faFolder},
     {name: "Promociones", icon: faMoneyBillAlt},
@@ -15,22 +19,37 @@ const OptionsMenu = [
     {name: "Cerrar Sesión", icon: faSignOutAlt}
 ]
 
-
-
 const Header = props =>{
+
+    const {state, actions} = useContext(Context)
 
     const [ShowMenu, setShowMenu] = useState(false)
 
     const ActiveMenu = () =>{
         setShowMenu(true)
+        let body = document.getElementsByTagName("body")
+        body[0].classList.add("no-scroll")
+    }
+
+    const CloseMenu = () =>{
+        setShowMenu(false)
+        let body = document.getElementsByTagName("body")
+        body[0].classList.remove("no-scroll")
     }
 
     const Options = nameOption =>{
-        if (nameOption === "Cerrar Sesión") {
-            setShowMenu(false)
-        }
+        actions({type: "setState", payload: {...state, menu_option: nameOption }})
+        CloseMenu()
     }
 
+    useEffect (() =>{
+        if (props.Swipe) {
+            ActiveMenu() 
+        }
+        if (props.Swipe === "off") {
+            CloseMenu() 
+        }
+    })
 
     return(
         <React.Fragment>
@@ -44,45 +63,49 @@ const Header = props =>{
                     </div>
                 </div>
             </div>
-            <div className={`container-full-menu ${ShowMenu ? "active-menu" : ""}`}>
-                <div className="container-bars-full-menu">
-                    <FontAwesomeIcon icon={faBars} className="bars-full-menu" />
-                </div>
-                <div className="spacing-left-full-menu">
-                    <p className="text-menu">Menú</p>
-                    <div className="points-container-menu-full">
-                        <p className="text-points-title">Puntos Acumulados</p>
-                        <p className="text-points">3000</p>
-                    </div>
-                </div>
-                {/* <div className="container-master-promotions-full-bar">
-                    <div className="container-promotion-1style-full-bar">
-                        <div className="figure-1style-full-bar" />
-                        <div className="container-text-promotion-1style">
-                            <div className="container-master-text-1style">
-                                <p className="text-promotion-1style">Promoción</p>
-                                <p>Tiendas KOAJ</p>
-                                <p className="discount-text-1style">20% de descuento</p>
-                                <p className="points-text-promotion-1style">3000 puntos</p>
-                            </div>
+            <Hammer onSwipe={CloseMenu} direction={"DIRECTION_LEFT"}>
+                <div className={`container-full-menu ${ShowMenu ? "active-menu" : ""}`}>
+                    <div className="container-bars-full-menu">
+                        <div className="container-close-menu" onClick={CloseMenu}>
+                            <FontAwesomeIcon icon={faBars} className="bars-full-menu" />
                         </div>
-                        <img src={Ropa} className="container-img-1style-full-bar" />
                     </div>
-                </div> */}
-                <hr className="separator-full-menu" />
-                <div className="container-master-menu-options">
-                    {OptionsMenu.map((option, id) =>{
-                        return(
-                            <div className="container-option" onClick={() => Options(option.name)}>
-                                <div className="container-icon-option">
-                                    <FontAwesomeIcon icon={option.icon} className="icon-menu-option" />
+                    <div className="spacing-left-full-menu">
+                        <p className="text-menu">Menú</p>
+                        <div className="points-container-menu-full">
+                            <p className="text-points-title">Puntos Acumulados</p>
+                            <p className="text-points">3000</p>
+                        </div>
+                    </div>
+                    {/* <div className="container-master-promotions-full-bar">
+                        <div className="container-promotion-1style-full-bar">
+                            <div className="figure-1style-full-bar" />
+                            <div className="container-text-promotion-1style">
+                                <div className="container-master-text-1style">
+                                    <p className="text-promotion-1style">Promoción</p>
+                                    <p>Tiendas KOAJ</p>
+                                    <p className="discount-text-1style">20% de descuento</p>
+                                    <p className="points-text-promotion-1style">3000 puntos</p>
                                 </div>
-                                <p className="text-menu-option">{option.name}</p>
                             </div>
-                        )
-                    })}
+                            <img src={Ropa} className="container-img-1style-full-bar" />
+                        </div>
+                    </div> */}
+                    <hr className="separator-full-menu" />
+                    <div className="container-master-menu-options">
+                        {OptionsMenu.map((option, id) =>{
+                            return(
+                                <div className="container-option" onClick={() => Options(option.name)}>
+                                    <div className="container-icon-option">
+                                        <FontAwesomeIcon icon={option.icon} className="icon-menu-option" />
+                                    </div>
+                                    <p className={`text-menu-option ${props.title === option.name ? "active-menu-full" : ""}`}>{option.name}</p>
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
-            </div>
+            </Hammer>
             <div className={`container-full-menu-bg ${ShowMenu ? "active-menu-bg" : ""}`}/>
         </React.Fragment>
     )

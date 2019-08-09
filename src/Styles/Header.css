@@ -66,15 +66,17 @@
     height: 100vh;
     z-index: 400;
     opacity: 0;
-    left: 15%;
     transition: 0.3s;
+    pointer-events: none;
 }
 .active-menu{
     left: 0%;
 }
 .active-menu-bg{
     opacity: 1;
-    left: 0%;
+}
+.no-scroll{
+    overflow: hidden;
 }
 .text-menu{
     color: #fff;
@@ -186,12 +188,8 @@
     text-transform: uppercase;
     font-family: 'Yanone Kaffeesatz', sans-serif !important;
     letter-spacing: 1px;
-    line-height: 1;
+    line-height: 1.4;
     transition: 0.3s;
-}
-.text-menu-option:hover{
-    color: #a8a8a8;
-
 }
 .icon-menu-option{
     color: #dfdfdf;
@@ -202,4 +200,10 @@
 .container-icon-option{
     display: flex;
     width: 1.6rem;
+}
+.container-close-menu{
+    height: fit-content;
+}
+.active-menu-full{
+    color: #08a8b1;
 }
