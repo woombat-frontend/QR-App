@@ -7,6 +7,12 @@ import { withRouter } from 'react-router-dom'
 
 /* Screens */
 import Principal from './Screens/Principal'
+import Acumular from './Screens/Acumular'
+import Categorias from './Screens/Categorias'
+import Promociones from './Screens/Promociones'
+import Perfil from './Screens/Perfil'
+import Ubicacion from './Screens/Ubicacion'
+import Ayuda from './Screens/Ayuda'
 
 
 
@@ -41,10 +47,22 @@ const Home = props =>{
                     <div>
                         <Hammer onSwipe={SwipeOff} direction={"DIRECTION_LEFT"}>
                             <div>
-                                {state.menu_option === "Inicio" ?
-                                <Principal />
-                                :
-                                <div />
+                                {
+                                state.menu_option === "Inicio" ?
+                                    <Principal />
+                                : state.menu_option === "Acumular" ? 
+                                    <Acumular />
+                                : state.menu_option === "Categorias" ?
+                                    <Categorias />
+                                : state.menu_option === "Promociones" ?
+                                    <Promociones />
+                                : state.menu_option === "Perfil" ?
+                                    <Perfil />
+                                : state.menu_option === "Ubicacion" ?
+                                    <Ubicacion />
+                                : state.menu_option === "Ayuda" ?
+                                    <Ayuda />
+                                : <div/>
                                 }
                             </div>
                         </Hammer>

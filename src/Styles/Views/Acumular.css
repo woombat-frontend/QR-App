@@ -1,0 +1,13 @@
+.container-master{
+    background-color: #292C32;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 0 2rem;
+    padding-bottom: 2.5rem;
+    padding-top: 7vh;
+}
+.container-read-qr{
+    
+}

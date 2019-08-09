@@ -30,8 +30,10 @@
     .text-normal-detail-local:nth-child(3){
         font-size: 0.875rem !important;
     }
-    .container-master-home{
-        padding: 0 1.8rem !important;
+    .container-master{
+        padding-top: 7vh !important;
+        padding-left: 1.8rem !important;
+        padding-right: 1.8rem !important;
         padding-bottom: 2.5rem !important;
     }
     .container-categorie{

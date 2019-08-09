@@ -2,7 +2,7 @@ body{
     background-color: #292C32 !important;
 }
 
-.container-master-home{
+.container-master{
     background-color: #292C32;
     width: 100%;
     display: grid;
@@ -10,12 +10,12 @@ body{
     grid-template-rows: auto;
     padding: 0 2rem;
     padding-bottom: 2.5rem;
+    padding-top: 7vh;
 }
 .container-points-home{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 7vh;
     padding-top: 1.2rem;
 }
 .text-points-home{

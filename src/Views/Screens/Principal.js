@@ -18,7 +18,7 @@ const categories = [
 
 const Principal = () =>{
     return(
-        <div className="container-master-home">
+        <div className="container-master">
             <div className="container-points-home">
                 <p className="text-points-home">Puntos Acumulados</p>
                 <p className="actual-points-home">3000</p>
