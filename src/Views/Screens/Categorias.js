@@ -25,11 +25,22 @@ const Categorias = () =>{
     const [LocalsFinal, setLocalsFinal] = useState(locals)
     const [placeholderInput, setPlacerHolderInput] = useState("Buscar Negocios")
 
+    const CleanAll = () =>{
+        setCategorie("")
+        setLocalsFinal(locals)
+        setPlacerHolderInput("Buscar Negocios")
+    }
+
     const ClickCategorie = name =>{
-        setCategorie(name)
-        setPlacerHolderInput(`Buscar en ${name}`)
-        const filterbycategorie = locals.filter(local => local.categorie === name)
-        setLocalsFinal(filterbycategorie)
+        if (Categorie && Categorie === name) {
+            CleanAll()
+        }
+        else{
+            setCategorie(name)
+            setPlacerHolderInput(`Buscar en ${name}`)
+            const filterbycategorie = locals.filter(local => local.categorie === name)
+            setLocalsFinal(filterbycategorie)
+        }
     }
 
     const FilterbyInput = value =>{
