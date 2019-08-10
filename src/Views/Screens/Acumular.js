@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../Styles/Views/Acumular.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQrcode, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import QrReader from 'react-qr-reader'
 
 const Acumular = () =>{
+
+    const [Qresult, setQresult] = useState("")
+
+    const handleScan = data => 
+        data 
+        ? setQresult(data) 
+        : console.log('%cnot code to scan', 'color: red; font-weight: bolder;')
+
+    const handleError = err => console.log(err)
+
     return(
         <div className="container-master">
            <div className="container-master-acumular">
@@ -13,7 +24,12 @@ const Acumular = () =>{
                     </div>
                 </div>
                 <div className="container-master-qr-reader">
-                    <div className="container-qr-reader"></div>
+                    <QrReader
+                        delay={300}
+                        onError={handleError}
+                        onScan={handleScan} 
+                        style={{ width: '82%', border: 'none' }}
+                    />
                 </div>
                 <div className="container-info-gas-station">
                     <div className="container-info-icon-gas-station">

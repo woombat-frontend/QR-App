@@ -1,36 +1,30 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import QrReader from 'react-qr-reader'
 import '../Styles/QReader.css'
 
-class QReader extends Component {
-    state = {
-        result: 'No result'
-    }
+const QReader = () => {
+    const [qresult, setQresult] = useState("")
 
-    handleScan = data => {
+    const handleScan = data => {
         if (data) {
-            this.setState({
-                result: data
-            })
+            setQresult(data)
         }
     }
-    handleError = err => {
+
+    const handleError = err => {
         console.error(err)
     }
-    render() {
-        return (
-            <div className="qr-main-container">
-                <QrReader
-                    delay={300}
-                    onError={this.handleError}
-                    onScan={this.handleScan}
-                    style={{ width: '100%', border: 'none' }}
-                    
-                />
-                <p>{this.state.result}</p>
-            </div>
-        )
-    }
+    return (
+        <div className="qr-main-container">
+            <QrReader
+                delay={300}
+                onError={handleError}
+                onScan={handleScan}
+                style={{ width: '100%', border: 'none' }}
+            />
+            <p>{qresult}</p>
+        </div>
+    )
 }
 
 
