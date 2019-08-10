@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "ocr-a508b",
+    "QR": "qr-app-a0d83"
+  }
+}
