@@ -14,7 +14,7 @@
     align-items: center;
     flex-direction: column;
 }
-.container-qr-read{
+.container-qr-reader{
     width: 35vh;
     height: 35vh;
     background-color: #0055ff;  
@@ -23,13 +23,39 @@
     height: fit-content;
     color: #fff;
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
+    letter-spacing: 1px;
 }
 .container-master-text-qr{
-    margin-top: 7vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 6rem;
 }
 .container-master-acumular{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    justify-items: center;
+}
+.text-info-acumular{
+    font-weight: 200;
+    color: #e2e2e2;
+    text-align: justify;
+    font-size: 0.8rem;
+}
+.container-master-qr-reader{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.container-info-gas-station{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    padding-top: 3rem;
+}
+.container-info-icon-gas-station{
+    padding: 0 0.8rem;
+    display: flex;
+    align-items: center;
+    color: #fff;
 }

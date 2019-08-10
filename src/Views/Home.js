@@ -44,9 +44,9 @@ const Home = props =>{
             <React.Fragment>
                 <Header title={state.menu_option} Swipe={ShowMenu} />
                 <Hammer onSwipe={SwipeOn} direction={"DIRECTION_RIGHT"}>
-                    <div>
+                    <div className="full-screen">
                         <Hammer onSwipe={SwipeOff} direction={"DIRECTION_LEFT"}>
-                            <div>
+                            <div className="full-screen">
                                 {
                                 state.menu_option === "Inicio" ?
                                     <Principal />

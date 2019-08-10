@@ -1,0 +1,52 @@
+.container-master-categorias{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 1.5rem;
+}
+.container-search-categories{
+    padding-top: 10vh;
+}
+.container-search-categories .ant-input{
+    background-color: #3b3f4b !important;
+}
+.container-categories-categories{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-items: center;
+}
+.container-one-categorie-categories{
+    width: 90%;
+    height: 5rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.text-one-categorie-categories{
+    color: #fff;
+    text-transform: uppercase;
+    position: absolute;
+    top: 75%;
+    font-size: 0.4375rem;
+    letter-spacing: 0.1rem;
+    font-weight: 700;
+}
+.container-bg-categorie-categories{
+    background-color: #efd36294;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.7rem;
+    transition: 0.2s;
+    opacity: 0;
+}
+.bg-active{
+    opacity: 1;
+}
+.separator-categories{
+    width: 100%;
+    background-color: #e8ca4d;
+    height: 0.0625rem;
+    border: none;
+    margin: 0;
+}

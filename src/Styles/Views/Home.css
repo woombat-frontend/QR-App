@@ -2,6 +2,10 @@ body{
     background-color: #292C32 !important;
 }
 
+.full-screen{
+    height: 100vh;
+}
+
 .container-master{
     background-color: #292C32;
     width: 100%;

@@ -8,7 +8,7 @@
 .container-master-header{
     display: grid;
     grid-template-columns: 15% 1fr;
-    height: 7vh;
+    height: 6vh;
     width: 100%;
     position: relative;
 }
