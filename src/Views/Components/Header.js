@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons'
 import { faUser, faFolder, faMoneyBillAlt, faAddressCard, faMap, faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
 import '../../Styles/Header.css'
-import Ropa from '../../assets/demo-img/ropa.jpg'
 import Hammer from 'react-hammerjs'
 
 
@@ -77,20 +76,6 @@ const Header = props =>{
                             <p className="text-points">3000</p>
                         </div>
                     </div>
-                    {/* <div className="container-master-promotions-full-bar">
-                        <div className="container-promotion-1style-full-bar">
-                            <div className="figure-1style-full-bar" />
-                            <div className="container-text-promotion-1style">
-                                <div className="container-master-text-1style">
-                                    <p className="text-promotion-1style">Promoción</p>
-                                    <p>Tiendas KOAJ</p>
-                                    <p className="discount-text-1style">20% de descuento</p>
-                                    <p className="points-text-promotion-1style">3000 puntos</p>
-                                </div>
-                            </div>
-                            <img src={Ropa} className="container-img-1style-full-bar" />
-                        </div>
-                    </div> */}
                     <hr className="separator-full-menu" />
                     <div className="container-master-menu-options">
                         {OptionsMenu.map((option, id) =>{
