@@ -17,6 +17,7 @@ body{
     flex-direction: column;
     align-items: center;
     padding-top: 1.2rem;
+    margin-top: 7vh;
 }
 .text-points-home{
     color: #fff;

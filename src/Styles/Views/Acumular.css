@@ -6,8 +6,30 @@
     grid-template-rows: auto;
     padding: 0 2rem;
     padding-bottom: 2.5rem;
-    padding-top: 7vh;
 }
 .container-read-qr{
-    
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    align-items: center;
+    flex-direction: column;
+}
+.container-qr-read{
+    width: 35vh;
+    height: 35vh;
+    background-color: #0055ff;  
+}
+.container-text-qr{
+    height: fit-content;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+.container-master-text-qr{
+    margin-top: 7vh;
+}
+.container-master-acumular{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
 }
