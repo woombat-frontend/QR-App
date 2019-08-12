@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faSearch, faUtensils, faTshirt, faFish } from '@fortawesome/free-solid-svg-icons'
 import '../../Styles/Views/Home.css'
@@ -23,7 +23,28 @@ const Principal = () => {
     const {state, actions} = useContext(Context)
     const db = firebase.firestore()
 
-   
+   useEffect(() => {
+       state.fireInit.auth().onAuthStateChanged(user => {
+           if (user) {
+               db.doc(`usuarios/${user.uid}/`).get()
+                   .then(res => {
+
+                       actions({
+                           type: 'setState',
+                           payload: {
+                               ...state,
+                               personal_info: {
+                                   name: res.data().name,
+                                   points: res.data().points,
+                                   email: state.fireInit.auth().currentUser.email,
+                                   uid: state.fireInit.auth().currentUser.uid
+                               }
+                           }
+                       })
+                   })
+           }
+       })
+   }, []);
 
 
     return(

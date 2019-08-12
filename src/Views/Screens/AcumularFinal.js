@@ -20,7 +20,7 @@ const Acumular = () =>{
                 </div>
                 <div className="container-master-text-recharge">
                     <p className="text-small-recharge">Ha recargado</p>
-                    <p className="text-big-recharge">10.000</p>
+                    <p className="text-big-recharge">{state.final_amount}</p>
                     <p className="text-small-recharge">Puntos</p>
                 </div>
                 <hr className="separator" />

@@ -6,7 +6,8 @@ const State = {
     set_role: '',
     fireInit: null,
     personal_info: { name: "", points: null, email: "", uid: "" },
-    showLogin: true
+    showLogin: true,
+    final_amount: null
 }
 
 const useGlobalState = () => {

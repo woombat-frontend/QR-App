@@ -10,7 +10,7 @@ const Acumular = () =>{
 
 
     const {state, actions} = useContext(Context)
-    const [Qresult, setQresult] = useState("")
+    const [Qresult, setQresult] = useState([])
     const [QreaderState, setQreaderState] = useState(false)
 
     
@@ -26,18 +26,40 @@ const Acumular = () =>{
     }
     
 
-    const handleScan = data => 
-        data 
-        ? (console.log('readed'), setQresult(data), setQreaderState(true))
-        : (console.log('%cnot code to scan', 'color: red; font-weight: bolder;'), setQreaderState(false))
+    const handleScan = async data => {
+        if (data) {
+            await setQresult(data.split('*'))
+            await setQreaderState(true)
+        }
+    }
 
     const handleError = err   => console.log(err)
 
     const checkLast = () => {
-        QreaderState ?
-            actions({ type: "setState", payload: { ...state, menu_option: "AcumularFinal" } })
-            :
-            console.log()
+        let currentPoints = null
+        if (QreaderState) {
+            db.doc(`temporal_codes/${Qresult[0]}`).delete()
+                .then(() => {
+                    actions({ 
+                        type: "setState", 
+                        payload: { 
+                            ...state, 
+                            menu_option: "AcumularFinal", 
+                            final_amount: Qresult[1],
+                            personal_info: {
+                                ...state.personal_info,
+                                points: state.personal_info.points + parseInt(Qresult[1])
+                            }
+                        } 
+                    })
+
+                })
+            .then(() => {
+                db.doc(`usuarios/${state.personal_info.uid}`).set({
+                    points: state.personal_info.points + parseInt(Qresult[1])
+                })
+            })
+        }
     }
 
 
