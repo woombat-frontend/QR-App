@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import Context from '../../GlobalState/context'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faSignOutAlt, faHome, faWifi, faDonate} from '@fortawesome/free-solid-svg-icons'
 import { faUser, faFolder, faMoneyBillAlt, faAddressCard, faMap, faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
 import '../../Styles/Header.css'
 import Hammer from 'react-hammerjs'
@@ -10,13 +10,20 @@ import { withRouter } from 'react-router-dom'
 
 const OptionsMenu = [
     {name: "Inicio", icon: faHome},
-    {name: "Acumular", icon: faUser},
+    { name: "Acumular", icon: faDonate},
     {name: "Categorias", icon: faFolder},
     {name: "Promociones", icon: faMoneyBillAlt},
     {name: "Perfil", icon: faAddressCard},
     {name: "Ubicación", icon: faMap},
     {name: "Ayuda", icon: faQuestionCircle},
     {name: "Cerrar Sesión", icon: faSignOutAlt}
+]
+
+const AdminMenuOptions = [
+    { name: "Inicio", icon: faHome },
+    { name: "Perfil", icon: faUser },
+    { name: "Historial", icon: faWifi },
+    { name: "Cerrar Sesión", icon: faSignOutAlt }
 ]
 
 const Header = props => {
@@ -85,14 +92,28 @@ const Header = props => {
                     </div>
                     <hr className="separator-full-menu" />
                     <div className="container-master-menu-options">
-                        {OptionsMenu.map((option, id) =>
-                            <div className="container-option" onClick={() => Options(option.name)}>
-                                <div className="container-icon-option">
-                                    <FontAwesomeIcon icon={option.icon} className="icon-menu-option" />
-                                </div>
-                                <p className={`text-menu-option ${props.title === option.name ? "active-menu-full" : ""}`}>{option.name}</p>
-                            </div>
-                        )}
+                        {
+                            props.role === 'user' ? 
+                                OptionsMenu.map((option, id) =>
+                                    <div className="container-option" onClick={() => Options(option.name)}>
+                                        <div className="container-icon-option">
+                                            <FontAwesomeIcon icon={option.icon} className="icon-menu-option" />
+                                        </div>
+                                        <p className={`text-menu-option ${props.title === option.name ? "active-menu-full" : ""}`}>{option.name}</p>
+                                    </div>
+                                )
+                            : props.role === 'admin' ?
+                                    AdminMenuOptions.map((option, id) =>
+                                        <div className="container-option" onClick={() => Options(option.name)}>
+                                            <div className="container-icon-option">
+                                                <FontAwesomeIcon icon={option.icon} className="icon-menu-option" />
+                                            </div>
+                                            <p className={`text-menu-option ${props.title === option.name ? "active-menu-full" : ""}`}>{option.name}</p>
+                                        </div>
+                                    )
+                            :
+                            <div/>
+                        }
                     </div>
                 </div>
             </Hammer>

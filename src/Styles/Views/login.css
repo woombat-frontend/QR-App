@@ -19,8 +19,14 @@ p{
     justify-content: center;
 }
 
+
+
 .gas-icon-login{
     width: 7rem;
+    pointer-events: none;
+}
+.gas-icon-login-admin {
+    width: 10.5rem;
     pointer-events: none;
 }
 .container-login{

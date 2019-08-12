@@ -3,6 +3,7 @@ import { useState } from 'react'
 // El estado general es este objeto. Se recomienda mantener esta estructura como contenedor de arrays, strings, otros objetos...etc
 const State = {
     menu_option: "Inicio",
+    admin_menu_option: 'Inicio',
     set_role: '',
     fireInit: null,
     personal_info: { name: "", points: null, email: "", uid: "" },
