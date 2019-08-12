@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import '../../Styles/Views/Acumular.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQrcode, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import Context from '../../GlobalState/context';
 import QrReader from 'react-qr-reader'
+import firebase from 'firebase'
 
 const Acumular = () =>{
 
@@ -12,12 +13,33 @@ const Acumular = () =>{
     const [Qresult, setQresult] = useState("")
     const [QreaderState, setQreaderState] = useState(false)
 
+    
+
+    const db = firebase.firestore()
+
+    const generateRandomId = () => {
+        return Math.random().toString(36).substr(2, 9);
+    }
+
+    const createTemporaryCode = () => {
+        
+    }
+    
+
     const handleScan = data => 
         data 
-        ? (setQresult(data), setQreaderState(true))
+        ? (console.log('readed'), setQresult(data), setQreaderState(true))
         : (console.log('%cnot code to scan', 'color: red; font-weight: bolder;'), setQreaderState(false))
 
-    const handleError = err => console.log(err)
+    const handleError = err   => console.log(err)
+
+    const checkLast = () => {
+        QreaderState ?
+            actions({ type: "setState", payload: { ...state, menu_option: "AcumularFinal" } })
+            :
+            console.log()
+    }
+
 
     QreaderState ? 
     actions({ type: "setState", payload: { ...state, menu_option: "AcumularFinal" } }) 
@@ -29,7 +51,7 @@ const Acumular = () =>{
            <div className="container-master-acumular">
                 <div className="container-master-text-qr">
                     <div className="container-text-qr">
-                        <p><FontAwesomeIcon icon={faQrcode} /> Escanear codigo QR</p>
+                        <p onClick={createTemporaryCode} ><FontAwesomeIcon icon={faQrcode} /> Escanear codigo QR</p>
                     </div>
                 </div>
                 <div className="container-master-qr-reader">
@@ -47,6 +69,7 @@ const Acumular = () =>{
                     <p className="text-info-acumular">Indique al encargado de la estación de servicio que desea registar puntos para la aplicación ALBOS</p>
                 </div>
            </div>
+           {checkLast()}
         </div>
     )
 }

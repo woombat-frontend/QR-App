@@ -2,17 +2,21 @@ import React, { useState } from 'react'
 import QrReader from 'react-qr-reader'
 import '../Styles/QReader.css'
 
+import { Button } from 'antd'
+
 const QReader = () => {
     const [qresult, setQresult] = useState("")
 
     const handleScan = data => {
-        if (data) {
-            setQresult(data)
-        }
+        setTimeout(() => {
+            if (data) {
+                setQresult(data)
+            }
+        }, 1000)
     }
 
     const handleError = err => {
-        console.error(err)
+        setTimeout(() => console.log(err), 1000)
     }
     return (
         <div className="qr-main-container">
@@ -23,6 +27,7 @@ const QReader = () => {
                 style={{ width: '100%', border: 'none' }}
             />
             <p>{qresult}</p>
+            <Button style={{position: 'absolute', top: '-20%'}} onClick={() => alert()}>Check</Button>
         </div>
     )
 }
