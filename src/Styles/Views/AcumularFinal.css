@@ -41,3 +41,13 @@
     color: #E8CA4D;
     font-size: 0.7rem;
 }
+.container-master-acumular-final{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    transition: 0.2s;
+    opacity: 0; 
+}
+.show-final{
+    opacity: 1;
+}
