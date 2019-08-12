@@ -1,0 +1,91 @@
+.container-master-profile{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 1.5rem;
+}
+.container-photo-and-name{
+    padding-top: 6vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+.img-style-profile{
+    border-radius: 5rem;
+    width: 6rem;
+    margin-bottom: 0.5rem;
+}
+.name-profile{
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 200;
+}
+.text-edit-photo{
+    color: #626977;
+    font-size: 0.7rem;
+}
+.container-option-profile{
+    display: flex;
+    color: #fff;
+    justify-content: space-between;
+    align-items: center;
+}
+.text-option{
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 200;
+}
+.separator-profile{
+    width: 100%;
+    background-color: #ebebeb5c;
+    height: 0.0625rem;
+    border: none;
+    margin-top: 0.7rem;
+}
+.container-master-options{
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+    padding-top: 3rem;
+}
+.container-option-open{
+    display: grid;
+    grid-template-columns: 1fr 40%;
+    grid-gap: 0.5rem;
+    padding: 1rem 0;
+}
+.text-option-open{
+    color: #fff;
+    font-weight: 200;
+    font-size: 0.6rem;
+}
+.space-option{
+    margin-top: 0.6rem !important;
+}
+.container-option-input .ant-input{
+    padding: 0.6rem 0.5rem !important;
+    height: fit-content !important;
+    font-size: 0.6875rem !important;
+    margin-top: 0.3rem;
+}
+.text-buttom-option{
+    color: #232323;
+    line-height: 1;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.container-buttom-option{
+    background-color: #e8ca4d;
+    padding: 0.5rem 1rem;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 5rem;
+}
+.container-master-buttom-option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
