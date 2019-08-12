@@ -39,7 +39,11 @@ const Home = props =>{
     return(
         <React.Fragment>
             {state.menu_option === "Cerrar Sesión" ? 
-            props.history.push('/')
+                (
+                    actions({ type: "setState", payload: { ...state, menu_option: 'Inicio' } }),
+                    state.fireInit.auth().signOut(),
+                    props.history.push('/')
+                )
             :
             <React.Fragment>
                 <Header title={state.menu_option} Swipe={ShowMenu} />

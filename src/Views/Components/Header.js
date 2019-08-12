@@ -5,6 +5,7 @@ import { faBars, faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons'
 import { faUser, faFolder, faMoneyBillAlt, faAddressCard, faMap, faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
 import '../../Styles/Header.css'
 import Hammer from 'react-hammerjs'
+import { withRouter } from 'react-router-dom'
 
 
 const OptionsMenu = [
@@ -18,11 +19,19 @@ const OptionsMenu = [
     {name: "Cerrar Sesión", icon: faSignOutAlt}
 ]
 
-const Header = props =>{
+const Header = props => {
 
     const {state, actions} = useContext(Context)
-
     const [ShowMenu, setShowMenu] = useState(false)
+
+    useEffect(() => {
+        if (props.Swipe) {
+            ActiveMenu()
+        }
+        if (props.Swipe === "off") {
+            CloseMenu()
+        }
+    })
 
     const ActiveMenu = () =>{
         setShowMenu(true)
@@ -37,18 +46,13 @@ const Header = props =>{
     }
 
     const Options = nameOption =>{
-        actions({type: "setState", payload: {...state, menu_option: nameOption }})
+        nameOption === 'Cerrar Sesión' 
+        ?   state.fireInit.auth().signOut().then(() => props.history.push('/'))
+        :   actions({ type: "setState", payload: { ...state, menu_option: nameOption } })
         CloseMenu()
     }
-
-    useEffect (() =>{
-        if (props.Swipe) {
-            ActiveMenu() 
-        }
-        if (props.Swipe === "off") {
-            CloseMenu() 
-        }
-    })
+    
+    
 
     return(
         <React.Fragment>
@@ -78,16 +82,14 @@ const Header = props =>{
                     </div>
                     <hr className="separator-full-menu" />
                     <div className="container-master-menu-options">
-                        {OptionsMenu.map((option, id) =>{
-                            return(
-                                <div className="container-option" onClick={() => Options(option.name)}>
-                                    <div className="container-icon-option">
-                                        <FontAwesomeIcon icon={option.icon} className="icon-menu-option" />
-                                    </div>
-                                    <p className={`text-menu-option ${props.title === option.name ? "active-menu-full" : ""}`}>{option.name}</p>
+                        {OptionsMenu.map((option, id) =>
+                            <div className="container-option" onClick={() => Options(option.name)}>
+                                <div className="container-icon-option">
+                                    <FontAwesomeIcon icon={option.icon} className="icon-menu-option" />
                                 </div>
-                            )
-                        })}
+                                <p className={`text-menu-option ${props.title === option.name ? "active-menu-full" : ""}`}>{option.name}</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </Hammer>
@@ -96,4 +98,4 @@ const Header = props =>{
     )
 }
 
-export default Header;
+export default withRouter(Header);

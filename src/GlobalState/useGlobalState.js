@@ -4,7 +4,9 @@ import { useState } from 'react'
 const State = {
     menu_option: "Inicio",
     set_role: '',
-    fireInit: null
+    fireInit: null,
+    personal_info: { name: "", points: null, email: "", uid: "" },
+    showLogin: true
 }
 
 const useGlobalState = () => {

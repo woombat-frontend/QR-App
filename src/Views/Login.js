@@ -9,25 +9,49 @@ import { faGooglePlusG } from '@fortawesome/free-brands-svg-icons'
 import { withRouter } from 'react-router-dom'
 import Context from '../GlobalState/context';
 import { Icon } from 'antd'
+import firebase from 'firebase'
 
 
 const Login = props =>{
 
     const {state, actions} = useContext(Context)
     const [showLogin, setShowLogin] = useState(false)
+    const db = firebase.firestore()
     const [userData, setUserData] = useState({
         user: "",
         password: ""
     })
 
     useEffect(() => {
-        checkPreviousAuth()
-    }, [])
-
-    const checkPreviousAuth = () => {
         state.fireInit.auth().onAuthStateChanged(user => {
-            user ? props.history.push('home') : setShowLogin(true)
+            if (user) {
+                db.doc(`usuarios/${user.uid}/`).get()
+                    .then(res => {
+
+                        actions({
+                            type: 'setState',
+                            payload: {
+                                ...state,
+                                personal_info: {
+                                    name: res.data().name,
+                                    points: res.data().points,
+                                    email: state.fireInit.auth().currentUser.email,
+                                    uid: state.fireInit.auth().currentUser.uid
+                                }
+                            }
+                        })
+                    })
+                    .then(() => props.history.push('home'))
+
+            } else {
+                setShowLogin(true)
+            }
         })
+    }, [])
+    
+    const checkPreviousAuth = () => {
+        console.log('fo')
+        
     }
 
     const logIn = () => {

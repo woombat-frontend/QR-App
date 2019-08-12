@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faSearch, faUtensils, faTshirt, faFish } from '@fortawesome/free-solid-svg-icons'
 import '../../Styles/Views/Home.css'
+import Context from '../../GlobalState/context';
+import firebase from 'firebase'
 
 const locals = [
     {name: "Hamburguesas el Pilon", discont: "30%", points: "5000", img: "pilon"},
@@ -16,13 +18,20 @@ const categories = [
     {name: "Mercado", icon: faFish, img: "verduras"}
 ]
 
-const Principal = () =>{
+const Principal = () => {
+
+    const {state, actions} = useContext(Context)
+    const db = firebase.firestore()
+
+   
+
+
     return(
         <div className="container-master">
             <div className="container-points-home">
                 <p className="text-points-home">Puntos Acumulados</p>
-                <p className="actual-points-home">3000</p>
-                <div className="buttom-acumular-puntos-home">
+                <p className="actual-points-home">{state.personal_info.points}</p>
+                <div onClick={()=>console.log(state.personal_info)} className="buttom-acumular-puntos-home">
                     <p className="text-acumular-puntos-home"><FontAwesomeIcon icon={faPlusCircle}/> Acumular</p>
                 </div>
             </div>
