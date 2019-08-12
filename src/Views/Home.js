@@ -18,6 +18,10 @@ import Tienda from './Screens/Tienda'
 import firebase from 'firebase'
 
 
+/* screens Admin */
+
+import Principal_Admin from './Screens/Screens_Admin/Principal_Admin'
+
 const Home = props =>{
 
     const {state, actions} = useContext(Context)
@@ -47,6 +51,7 @@ const Home = props =>{
                     props.history.push('/')
                 )
             :
+            state.type_user === "usuario" ? 
             <React.Fragment>
                 <Header title={state.menu_option} Swipe={ShowMenu} />
                 <Hammer onSwipe={SwipeOn} direction={"DIRECTION_RIGHT"}>
@@ -79,6 +84,33 @@ const Home = props =>{
                     </div>
                 </Hammer>
             </React.Fragment>
+            :
+            state.type_user === "admin" ?
+            <React.Fragment>
+                <Header title={state.menu_option} Swipe={ShowMenu} />
+                <Hammer onSwipe={SwipeOn} direction={"DIRECTION_RIGHT"}>
+                    <div className="full-screen">
+                        <Hammer onSwipe={SwipeOff} direction={"DIRECTION_LEFT"}>
+                            <div className="full-screen">
+                                {
+                                state.menu_option === "Inicio" ?
+                                    <Principal_Admin />
+                                : state.menu_option === "Perfil" ? 
+                                    <Acumular />
+                                : state.menu_option === "Historial" ? 
+                                    <AcumularFinal />
+                                : <div/>
+                                }
+                            </div>
+                        </Hammer>
+                    </div>
+                </Hammer>
+            </React.Fragment>
+            :
+            state.type_user === "superadmin" ?
+            <div></div>
+            :
+            console.log()  
             }
         </React.Fragment>
     )

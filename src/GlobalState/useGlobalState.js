@@ -7,7 +7,8 @@ const State = {
     fireInit: null,
     personal_info: { name: "", points: null, email: "", uid: "" },
     showLogin: true,
-    final_amount: null
+    final_amount: null,
+    type_user: "admin"
 }
 
 const useGlobalState = () => {
