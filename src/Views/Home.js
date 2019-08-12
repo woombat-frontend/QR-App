@@ -38,26 +38,6 @@ const Home = props =>{
         setTimeout(clean, 50);
     }
 
-    useEffect(() => {
-        state.fireInit.auth().onAuthStateChanged(user => {
-            if (user) {
-                db.doc(`usuarios/${user.uid}/`).onSnapshot(res => {
-                    actions({
-                        type: 'setState',
-                        payload: {
-                            ...state,
-                            personal_info: {
-                                points: res.data().points,
-                                uid: user.uid
-                            }
-                        }
-                    })
-                })
-                    
-            }
-        })    
-    }, []);
-
     return(
         <React.Fragment>
             {state.menu_option === "Cerrar Sesión" ? 
