@@ -3,24 +3,42 @@ import '../../Styles/Views/Acumular.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQrcode, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import QrReader from 'react-qr-reader'
+import firebase from 'firebase'
 
 const Acumular = () =>{
 
     const [Qresult, setQresult] = useState("")
+    const db = firebase.firestore()
 
-    const handleScan = data => 
-        data 
-        ? setQresult(data) 
-        : console.log('%cnot code to scan', 'color: red; font-weight: bolder;')
+    const handleScan = async data => {
+        
+        if (data) {
+            let splited = await data.split('*')
+            // db.doc(`temporal_codes/${data}`).set({
+            //     amount: 1000
+            // })
+            console.log(generateRandomId())
+        }else {
+            
+        }
+    }
+
+    const generateRandomId = () => {
+        return Math.random().toString(36).substr(2, 9);
+    }
 
     const handleError = err => console.log(err)
+
+    const createTemporaryCode = () => {
+        
+    }
 
     return(
         <div className="container-master">
            <div className="container-master-acumular">
                 <div className="container-master-text-qr">
                     <div className="container-text-qr">
-                        <p><FontAwesomeIcon icon={faQrcode} /> Escanear codigo QR</p>
+                        <p onClick={createTemporaryCode} ><FontAwesomeIcon icon={faQrcode} /> Escanear codigo QR</p>
                     </div>
                 </div>
                 <div className="container-master-qr-reader">
