@@ -48,6 +48,7 @@ const Home = props =>{
                             ...state,
                             personal_info: {
                                 points: res.data().points,
+                                uid: user.uid
                             }
                         }
                     })

@@ -36,7 +36,7 @@ const Acumular = () =>{
         let aux = state.personal_info.points
         if (QreaderState) {
             db.doc(`usuarios/${state.personal_info.uid}`).set({
-                    points: state.personal_info.points + parseInt(Qresult[1])
+                    points: aux + parseInt(Qresult[1])
                 }, { merge: true })
             .then (() => {
                 actions({

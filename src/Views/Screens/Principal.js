@@ -26,7 +26,7 @@ const Principal = () => {
 
    useEffect(() => {
        state.fireInit.auth().onAuthStateChanged(user => {
-           if (user) {
+           if (user) { 
                db.doc(`usuarios/${user.uid}`).get()
                    .then(res => {
                        setLocalPoints(res.data().points)

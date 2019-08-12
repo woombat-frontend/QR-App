@@ -27,6 +27,7 @@ const Login = props =>{
             if (user) {
                 db.doc(`usuarios/${user.uid}/`).get()
                     .then(res => {
+                        console.log(user.uid)
                         actions({
                             type: 'setState',
                             payload: {
