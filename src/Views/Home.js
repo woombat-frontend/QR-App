@@ -13,7 +13,8 @@ import Promociones from './Screens/Promociones'
 import Perfil from './Screens/Perfil'
 import Ubicacion from './Screens/Ubicacion'
 import Ayuda from './Screens/Ayuda'
-
+import AcumularFinal from './Screens/AcumularFinal'
+import Tienda from './Screens/Tienda'
 
 
 const Home = props =>{
@@ -56,6 +57,8 @@ const Home = props =>{
                                     <Principal />
                                 : state.menu_option === "Acumular" ? 
                                     <Acumular />
+                                : state.menu_option === "AcumularFinal" ? 
+                                    <AcumularFinal />
                                 : state.menu_option === "Categorias" ?
                                     <Categorias />
                                 : state.menu_option === "Promociones" ?
@@ -66,6 +69,8 @@ const Home = props =>{
                                     <Ubicacion />
                                 : state.menu_option === "Ayuda" ?
                                     <Ayuda />
+                                : state.menu_option === "Tienda" ?
+                                    <Tienda />
                                 : <div/>
                                 }
                             </div>

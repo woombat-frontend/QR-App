@@ -31,7 +31,7 @@ const Principal = () => {
             <div className="container-points-home">
                 <p className="text-points-home">Puntos Acumulados</p>
                 <p className="actual-points-home">{state.personal_info.points}</p>
-                <div onClick={()=>console.log(state.personal_info)} className="buttom-acumular-puntos-home">
+                <div onClick={()=> actions({ type: "setState", payload: { ...state, menu_option: "Acumular" } })} className="buttom-acumular-puntos-home">
                     <p className="text-acumular-puntos-home"><FontAwesomeIcon icon={faPlusCircle}/> Acumular</p>
                 </div>
             </div>
@@ -40,8 +40,8 @@ const Principal = () => {
                 <p className="text-universal-categories">Cerca de ti</p>
                 {locals.slice(0,2).map((local,id) =>{
                     return(
-                    <div className="container-near-you-locals">
-                        <div>
+                    <div className="container-near-you-locals" onClick={()=> actions({ type: "setState", payload: { ...state, menu_option: "Tienda" } })}>
+                        <div className="container-local-principal">
                             <img src={require(`../../assets/demo-img/${local.img}.jpg`)} alt={id} className="img-local" />
                         </div>
                         <div className="container-details-local">
@@ -53,7 +53,7 @@ const Principal = () => {
                     )
                 })}
                 <div className="container-master-show-more">
-                    <div className="container-buttom-show-more">
+                    <div className="container-buttom-show-more" onClick={() => actions({ type: "setState", payload: { ...state, menu_option: "Promociones" } })}>
                         <p><FontAwesomeIcon icon={faSearch}/> Ver Mas</p>
                     </div>
                 </div>
@@ -65,7 +65,7 @@ const Principal = () => {
                     <div className="container-categorie">
                         {categories.map((categorie, id) => {
                             return(
-                            <div className="container-one-categorie">
+                            <div className="container-one-categorie" onClick={() => actions({ type: "setState", payload: { ...state, menu_option: "Categorias" } })}>
                                 <img src={require(`../../assets/demo-img/${categorie.img}.jpg`)} alt={id} className="img-categorie"></img>
                                 <div className="gradient-categorie" />
                                 <p className="text-one-categorie"><FontAwesomeIcon icon={categorie.icon}/> {categorie.name}</p>

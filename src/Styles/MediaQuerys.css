@@ -1,9 +1,5 @@
 /* Media Querys */
 
-
-
-
-
 /* 360x640 Size */
 
 /* Login View */
@@ -39,6 +35,15 @@
         grid-gap: 0.5rem !important;
     }
 }
+
+/* Store View */
+
+/* @media (max-width: 360px){
+    .container-img-store{
+        width: 3.5rem !important;
+        height: 3.5rem !important;
+    }
+} */
 
 /* 375x667 Size */
 

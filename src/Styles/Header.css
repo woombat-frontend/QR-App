@@ -8,7 +8,7 @@
 .container-master-header{
     display: grid;
     grid-template-columns: 15% 1fr;
-    height: 6vh;
+    height: 5.5vh;
     width: 100%;
     position: relative;
 }
@@ -19,7 +19,7 @@
     align-items: center;
 }
 .bar-icon-header{
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 .text-header-right{
     color: #fff;

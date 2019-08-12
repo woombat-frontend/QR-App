@@ -1,19 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import '../../Styles/Views/Acumular.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQrcode, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import Context from '../../GlobalState/context';
 import QrReader from 'react-qr-reader'
 
 const Acumular = () =>{
 
+
+    const {state, actions} = useContext(Context)
     const [Qresult, setQresult] = useState("")
+    const [QreaderState, setQreaderState] = useState(false)
 
     const handleScan = data => 
         data 
-        ? setQresult(data) 
-        : console.log('%cnot code to scan', 'color: red; font-weight: bolder;')
+        ? (setQresult(data), setQreaderState(true))
+        : (console.log('%cnot code to scan', 'color: red; font-weight: bolder;'), setQreaderState(false))
 
     const handleError = err => console.log(err)
+
+    QreaderState ? 
+    actions({ type: "setState", payload: { ...state, menu_option: "AcumularFinal" } }) 
+    : 
+    console.log()
 
     return(
         <div className="container-master">
