@@ -25,7 +25,7 @@ const Login = props =>{
     useEffect(() => {
         state.fireInit.auth().onAuthStateChanged(user => {
             if (user) {
-                db.doc(`usuarios/${user.uid}/`).get()
+                db.doc(`usuarios/${user.uid}/`).onSnapshot()
                     .then(res => {
 
                         actions({

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Context from '../GlobalState/context';
 import Header from '../Views/Components/Header'
 import Hammer from 'react-hammerjs'
@@ -15,15 +15,16 @@ import Ubicacion from './Screens/Ubicacion'
 import Ayuda from './Screens/Ayuda'
 import AcumularFinal from './Screens/AcumularFinal'
 import Tienda from './Screens/Tienda'
+import firebase from 'firebase'
 
 
 const Home = props =>{
 
     const {state, actions} = useContext(Context)
-
+    const db = firebase.firestore()
     const [ShowMenu, setShowMenu] = useState(false)
 
-    const clean = () =>{
+    const clean = () => {
         setShowMenu(false)
     }
     
@@ -36,6 +37,25 @@ const Home = props =>{
         setShowMenu("off")
         setTimeout(clean, 50);
     }
+
+    useEffect(() => {
+        state.fireInit.auth().onAuthStateChanged(user => {
+            if (user) {
+                db.doc(`usuarios/${user.uid}/`).onSnapshot(res => {
+                    actions({
+                        type: 'setState',
+                        payload: {
+                            ...state,
+                            personal_info: {
+                                points: res.data().points,
+                            }
+                        }
+                    })
+                })
+                    
+            }
+        })    
+    }, []);
 
     return(
         <React.Fragment>
