@@ -63,6 +63,11 @@ const Acumular = () =>{
     }
 
 
+    QreaderState ? 
+    actions({ type: "setState", payload: { ...state, menu_option: "AcumularFinal" } }) 
+    : 
+    console.log()
+
     return(
         <div className="container-master">
            <div className="container-master-acumular">
