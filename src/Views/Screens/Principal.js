@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faSearch, faUtensils, faTshirt, faFish } from '@fortawesome/free-solid-svg-icons'
 import '../../Styles/Views/Home.css'
@@ -22,23 +22,22 @@ const Principal = () => {
 
     const {state, actions} = useContext(Context)
     const db = firebase.firestore()
+    const [localPoints, setLocalPoints] = useState(null)
 
    useEffect(() => {
        state.fireInit.auth().onAuthStateChanged(user => {
            if (user) {
-               db.doc(`usuarios/${user.uid}/`).get()
+               db.doc(`usuarios/${user.uid}`).get()
                    .then(res => {
-
+                       setLocalPoints(res.data().points)
                        actions({
                            type: 'setState',
                            payload: {
                                ...state,
-                               personal_info: {
-                                   name: res.data().name,
-                                   points: res.data().points,
-                                   email: state.fireInit.auth().currentUser.email,
-                                   uid: state.fireInit.auth().currentUser.uid
-                               }
+                                personal_info: {
+                                   points: res.data().points,                
+                                   uid: user.uid
+                                }
                            }
                        })
                    })
@@ -50,7 +49,7 @@ const Principal = () => {
     return(
         <div className="container-master">
             <div className="container-points-home">
-                <p className="text-points-home">Puntos Acumulados</p>
+                <p onClick={()=> console.log(state.personal_info)} className="text-points-home">Puntos Acumulados</p>
                 <p className="actual-points-home">{state.personal_info.points}</p>
                 <div onClick={()=> actions({ type: "setState", payload: { ...state, menu_option: "Acumular" } })} className="buttom-acumular-puntos-home">
                     <p className="text-acumular-puntos-home"><FontAwesomeIcon icon={faPlusCircle}/> Acumular</p>

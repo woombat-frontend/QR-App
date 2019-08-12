@@ -12,9 +12,6 @@ const Acumular = () =>{
     const {state, actions} = useContext(Context)
     const [Qresult, setQresult] = useState([])
     const [QreaderState, setQreaderState] = useState(false)
-
-    
-
     const db = firebase.firestore()
 
     const generateRandomId = () => {
@@ -36,27 +33,23 @@ const Acumular = () =>{
     const handleError = err   => console.log(err)
 
     const checkLast = () => {
-        let currentPoints = null
+        let aux = state.personal_info.points
         if (QreaderState) {
-            db.doc(`temporal_codes/${Qresult[0]}`).delete()
-                .then(() => {
-                    actions({ 
-                        type: "setState", 
-                        payload: { 
-                            ...state, 
-                            menu_option: "AcumularFinal", 
-                            final_amount: Qresult[1],
-                            personal_info: {
-                                ...state.personal_info,
-                                points: state.personal_info.points + parseInt(Qresult[1])
-                            }
-                        } 
-                    })
-
-                })
-            .then(() => {
-                db.doc(`usuarios/${state.personal_info.uid}`).set({
+            db.doc(`usuarios/${state.personal_info.uid}`).set({
                     points: state.personal_info.points + parseInt(Qresult[1])
+                }, { merge: true })
+            .then (() => {
+                actions({
+                    type: "setState",
+                    payload: {
+                        ...state,
+                        menu_option: "AcumularFinal",
+                        final_amount: Qresult[1],
+                        personal_info: {
+                            ...state.personal_info,
+                            points: aux + parseInt(Qresult[1])
+                        }
+                    }
                 })
             })
         }
