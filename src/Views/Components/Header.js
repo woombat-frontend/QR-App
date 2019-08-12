@@ -52,6 +52,9 @@ const Header = props => {
         CloseMenu()
     }
     
+    let title = props.title
+
+    props.title === "AcumularFinal" ? title = "Acumular" : title = props.title
     
 
     return(
@@ -62,7 +65,7 @@ const Header = props => {
                         <FontAwesomeIcon icon={faBars} className="bar-icon-header" />
                     </div>
                     <div className="container-right-header">
-                        <p className="text-header-right">{props.title}</p>
+                        <p className="text-header-right">{title}</p>
                     </div>
                 </div>
             </div>
@@ -77,7 +80,7 @@ const Header = props => {
                         <p className="text-menu">Menú</p>
                         <div className="points-container-menu-full">
                             <p className="text-points-title">Puntos Acumulados</p>
-                            <p className="text-points">3000</p>
+                            <p className="text-points">{state.personal_info.points}</p>
                         </div>
                     </div>
                     <hr className="separator-full-menu" />

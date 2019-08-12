@@ -1,0 +1,43 @@
+.container-master-text-recharge{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+.text-small-recharge{
+    color: #fff;
+    font-weight: 200;
+    width: 100%;
+    font-size: 0.8rem;
+}
+.text-big-recharge{
+    color: #08a8b1;
+    font-size: 3rem;
+}
+.container-near-you-locals-acumular-final{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    color: #fff;
+    align-items: center;
+    text-align: justify;
+    grid-gap: 1rem;
+    padding: 0 1rem;
+}
+.text-near-you{
+    color: #fff;
+    font-size: 0.7rem;
+}
+.near-you-locals-buttom-acumular-final{
+    background-color: #E8CA4D;
+    padding: 0.5rem 1rem;
+    margin:  1rem 0;
+}
+.text-near-you-locals-buttom-acumular-final{
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+.go-back-home{
+    color: #E8CA4D;
+    font-size: 0.7rem;
+}

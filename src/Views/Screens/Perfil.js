@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import '../../Styles/Views/Perfil.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faEnvelope, faSave } from '@fortawesome/free-regular-svg-icons'
 import { faAngleLeft, faAngleDown , faUserTag, faUserLock, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import User from '../../assets/demo-img/user.svg'
 import { Input } from 'antd';
+import Context from '../../GlobalState/context';
 
 
 const Perfil = () =>{
+
+    const {state, actions} = useContext(Context)
 
     const [Option, setOption] = useState("")
 
@@ -23,7 +26,7 @@ const Perfil = () =>{
             <div className="container-master-profile">
                 <div className="container-photo-and-name">
                     <img className="img-style-profile" src={User} />
-                    <p className="name-profile">Ronald Prato</p>
+                    <p className="name-profile">{state.personal_info.name}</p>
                     <p className="text-edit-photo"><FontAwesomeIcon icon={faEdit} /> Editar foto</p>
                 </div>
                 <div className="container-master-options">

@@ -1,37 +1,45 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import '../../Styles/Views/Acumular.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQrcode, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import Context from '../../GlobalState/context';
 import QrReader from 'react-qr-reader'
 import firebase from 'firebase'
 
 const Acumular = () =>{
 
-    const [Qresult, setQresult] = useState("")
-    const db = firebase.firestore()
 
-    const handleScan = async data => {
-        
-        if (data) {
-            let splited = await data.split('*')
-            // db.doc(`temporal_codes/${data}`).set({
-            //     amount: 1000
-            // })
-            console.log(generateRandomId())
-        }else {
-            
-        }
-    }
+    const {state, actions} = useContext(Context)
+    const [Qresult, setQresult] = useState("")
+    const [QreaderState, setQreaderState] = useState(false)
+
+    
+
+    const db = firebase.firestore()
 
     const generateRandomId = () => {
         return Math.random().toString(36).substr(2, 9);
     }
 
-    const handleError = err => console.log(err)
-
     const createTemporaryCode = () => {
         
     }
+    
+
+    const handleScan = data => 
+        data 
+        ? (console.log('readed'), setQresult(data), setQreaderState(true))
+        : (console.log('%cnot code to scan', 'color: red; font-weight: bolder;'), setQreaderState(false))
+
+    const handleError = err   => console.log(err)
+
+    const checkLast = () => {
+        QreaderState ?
+            actions({ type: "setState", payload: { ...state, menu_option: "AcumularFinal" } })
+            :
+            console.log()
+    }
+
 
     return(
         <div className="container-master">
@@ -56,6 +64,7 @@ const Acumular = () =>{
                     <p className="text-info-acumular">Indique al encargado de la estación de servicio que desea registar puntos para la aplicación ALBOS</p>
                 </div>
            </div>
+           {checkLast()}
         </div>
     )
 }
