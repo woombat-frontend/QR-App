@@ -9,10 +9,19 @@ import Context from '../../GlobalState/context';
 const Acumular = () =>{
 
     const {state, actions} = useContext(Context)
+    const [Show, setShow] = useState("")
+
+    const Change = () =>{
+        setTimeout(setClass,10)
+    }
+    const setClass = () =>{
+        setShow("show-final")
+    }
 
     return(
         <div className="container-master">
-           <div className="container-master-acumular">
+            {Change()}
+           <div className={`container-master-acumular-final ${Show}`}>
                 <div className="container-master-text-qr">
                     <div className="container-text-qr">
                         <p><FontAwesomeIcon icon={faCheckCircle} /> ¡Felicidades!</p>

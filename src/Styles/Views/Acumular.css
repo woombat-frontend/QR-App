@@ -36,6 +36,8 @@
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
+    transition: 0.2s;
+    opacity: 1; 
 }
 .text-info-acumular{
     font-weight: 200;
@@ -58,4 +60,7 @@
     display: flex;
     align-items: center;
     color: #fff;
+}
+.hide-acumular{
+    opacity: 0;
 }

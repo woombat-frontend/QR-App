@@ -17,7 +17,7 @@ import Hammer from 'react-hammerjs'
 const Login = props =>{
 
     const {state, actions} = useContext(Context)
-    const [showLogin, setShowLogin] = useState(false)
+    const [showLogin, setShowLogin] = useState(true)
     const db = firebase.firestore()
     const [userData, setUserData] = useState({
         user: "",
@@ -31,34 +31,30 @@ const Login = props =>{
     const [currentLogin, setCurrentLogin] = useState('')
     const [optionIndex, setOptionIndex] = useState(0)
 
-    useEffect(() => {
-        state.fireInit.auth().onAuthStateChanged(user => {
-            if (user) {
-                console.log(user)
-                db.doc(`usuarios/${user.uid}/`).get()
-                    .then(res => {
-                        res.data().role === 'user' ?
-                            actions({
-                                type: 'setState',
-                                payload: {
-                                    ...state,
-                                    personal_info: {
-                                        points: res.data().points,
-                                        uid: user.uid
-                                    }
-                                }
-                            })
-                        :
-                        console.log()
-                    })
-                    .then(res => res.data().role === 'user' ? props.history.push('home') : props.history.push('admin'))
-
-            } else {
-                setShowLogin(true)
-            }
-        })
-        setCurrentLogin(renderOptions[optionIndex])
-    }, [])
+    // useEffect(() => {
+    //     state.fireInit.auth().onAuthStateChanged(user => {
+    //         if (user) {
+    //             db.doc(`usuarios/${user.uid}/`).get()
+    //                 .then(res => {       
+    //                     actions({
+    //                         type: 'setState',
+    //                         payload: {
+    //                             ...state,
+    //                             personal_info: {
+    //                                 points: res.data().points,
+    //                                 uid: user.uid,
+    //                                 type_user: 'user'
+    //                             }
+    //                         }
+    //                     })
+    //                 })
+    //                 .then(() => props.history.push('home'))
+    //         } else {
+    //             setShowLogin(true)
+    //         }
+    //     })
+    //     setCurrentLogin(renderOptions[optionIndex])
+    // }, [])
     
     const checkPreviousAuth = () => {
         console.log('fo')
@@ -68,16 +64,30 @@ const Login = props =>{
     const logIn = role => {
         role === 'user' ?
             state.fireInit.auth().signInWithEmailAndPassword(userData.user, userData.password)
-                .then(() => {
-                   props.history.push('home')
+                .then(async () => {
+                    await actions({
+                        type: 'setState',
+                        payload: {
+                            ...state,
+                            type_user: 'user'
+                        }
+                    })
+                   await props.history.push('home')
                 })
                 .catch(err => {
                     alert("Campos invalidos")
                 })
         :
             state.fireInit.auth().signInWithEmailAndPassword(adminData.admin, adminData.password)
-                .then(() => {
-                    props.history.push('admin')
+                .then(async () => {
+                    await actions({
+                        type: 'setState',
+                        payload: {
+                            ...state,
+                            type_user: 'admin'
+                        }
+                    })
+                    await props.history.push('home')
                 })
                 .catch(err => {
                     alert("Campos invalidos")
@@ -115,7 +125,7 @@ const Login = props =>{
                                         </div>
                                     </div>
                                     <div>
-                                        <div onClick={()=>console.log(optionIndex)} className="container-buttom-login">
+                                        <div onClick={()=>state.fireInit.auth().signOut()} className="container-buttom-login">
                                             <p><FontAwesomeIcon icon={faUserPlus} /> Registrarse</p>
                                         </div>
                                     </div>

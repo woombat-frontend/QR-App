@@ -55,6 +55,10 @@ const Acumular = () =>{
         }
     }
 
+    const AnimationTimeOut = () =>{
+        setTimeout(checkLast, 10);
+    }
+
 
    /*  QreaderState ? 
     actions({ type: "setState", payload: { ...state, menu_option: "AcumularFinal" } }) 
@@ -63,7 +67,7 @@ const Acumular = () =>{
 
     return(
         <div className="container-master">
-           <div className="container-master-acumular">
+           <div className={`container-master-acumular ${QreaderState ? "hide-acumular" : ""}`}>
                 <div className="container-master-text-qr">
                     <div className="container-text-qr">
                         <p onClick={createTemporaryCode} ><FontAwesomeIcon icon={faQrcode} /> Escanear codigo QR</p>
@@ -84,7 +88,7 @@ const Acumular = () =>{
                     <p className="text-info-acumular">Indique al encargado de la estación de servicio que desea registar puntos para la aplicación ALBOS</p>
                 </div>
            </div>
-           {checkLast()}
+           {AnimationTimeOut()}
         </div>
     )
 }

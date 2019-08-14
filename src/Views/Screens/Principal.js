@@ -27,20 +27,36 @@ const Principal = () => {
    useEffect(() => {
        state.fireInit.auth().onAuthStateChanged(user => {
            if (user) { 
-               db.doc(`usuarios/${user.uid}`).get()
-                   .then(res => {
-                       setLocalPoints(res.data().points)
-                       actions({
-                           type: 'setState',
-                           payload: {
-                               ...state,
-                                personal_info: {
-                                   points: res.data().points,                
-                                   uid: user.uid
-                                }
-                           }
+               console.log("principal", state.type_user)
+               state.type_user === 'user' ? 
+                   db.doc(`usuarios/${user.uid}`).get()
+                       .then(res => {
+                           actions({
+                               type: 'setState',
+                               payload: {
+                                   ...state,
+                                   personal_info: {
+                                       points: res.data().points,
+                                       uid: user.uid
+                                   }
+                               }
+                           })
                        })
-                   })
+                :
+                   db.doc(`usuarios/${user.uid}`).get()
+                       .then(res => {
+                           actions({
+                               type: 'setState',
+                               payload: {
+                                   ...state,
+                                   personal_info: {
+                                       uid: user.uid,
+                                       name: res.data().name,
+                                       role: res.data().role
+                                   }
+                               }
+                           })
+                       })
            }
        })
    }, []);
